@@ -8,10 +8,16 @@ type GameState = {
   balance: number
   pool: number
   lastClicker: string | null
+  // countdown timer (seconds) shown on main site; demo defaults to 60s
+  countdown: number
   clicking: boolean
   feed: Array<FeedItem>
   // demo-only payout state and per-user click tracking
   payout: { active: boolean; amount: number } | null
+  // timer controls
+  startTimer: () => void
+  stopTimer: () => void
+  resetCountdown: () => void
   incDemoClick: () => void
   clearPayout: () => void
   pushFeed: (text: string, self?: boolean) => void
@@ -25,6 +31,7 @@ type GameState = {
 }
 
 let simInterval: number | null = null
+let timerInterval: number | null = null
 
 function poissonSample(lambda: number) {
   // simple Knuth algorithm
@@ -42,10 +49,28 @@ export const useGameStore = create<GameState>((set, get) => ({
   balance: 10.0, // demo starting balance in USD
   pool: 0.0,
   lastClicker: null,
+  countdown: 60,
   payout: null,
   feed: [],
   clicking: false,
   mode: 'demo',
+  startTimer: () => {
+    const state = get()
+    if (timerInterval != null) return
+    timerInterval = window.setInterval(() => {
+      set((s) => {
+        if (s.countdown > 0) return { countdown: s.countdown - 1 }
+        return s
+      })
+    }, 1000)
+  },
+  stopTimer: () => {
+    if (timerInterval != null) {
+      clearInterval(timerInterval)
+      timerInterval = null
+    }
+  },
+  resetCountdown: () => set(() => ({ countdown: 60 })),
   // increment the client's demo click counter and trigger a payout on the 50th click
   incDemoClick: () => {
     try {
@@ -65,6 +90,7 @@ export const useGameStore = create<GameState>((set, get) => ({
           pool: 0.0,
           balance: parseFloat((s.balance + jackpot).toFixed(2)),
           payout: { active: true, amount: jackpot },
+          countdown: 60,
         }))
         // reset the counter so it only triggers once per 50 clicks
         window.localStorage.setItem(key, '0')
@@ -138,12 +164,18 @@ export const useGameStore = create<GameState>((set, get) => ({
         lastClicker: Math.random() < 0.5 ? items[0]?.text.split(' ')[0] : s.lastClicker,
       }))
     }, 200)
+    // start the countdown timer when simulation begins
+    const g = get()
+    g.startTimer()
   },
   stopSimulator: () => {
     if (simInterval != null) {
       clearInterval(simInterval)
       simInterval = null
     }
+    // stop the countdown timer when simulation stops
+    const g = get()
+    g.stopTimer()
   },
 }))
 

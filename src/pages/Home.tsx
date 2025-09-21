@@ -23,10 +23,13 @@ function timeAgo(ts: number) {
 export default function Home() {
   const balance = useGameStore((s) => s.balance)
   const pool = useGameStore((s) => s.pool)
+  const countdown = useGameStore((s) => s.countdown)
   const lastClicker = useGameStore((s) => s.lastClicker)
   const reset = useGameStore((s) => s.reset)
   const mode = useGameStore((s) => s.mode)
   const setMode = useGameStore((s) => s.setMode)
+  const startTimer = useGameStore((s) => s.startTimer)
+  const stopTimer = useGameStore((s) => s.stopTimer)
   const startSimulator = useGameStore((s) => s.startSimulator)
   const stopSimulator = useGameStore((s) => s.stopSimulator)
   const feed = useGameStore((s) => s.feed)
@@ -58,6 +61,12 @@ export default function Home() {
     return () => { stopSimulator() }
   }, [mode])
 
+  useEffect(() => {
+    // ensure countdown timer runs while on the Home page in demo mode
+    if (mode === 'demo') startTimer()
+    return () => { stopTimer() }
+  }, [mode])
+
   function toggleMute() {
     const next = !muted
     audio.setMuted(next)
@@ -79,12 +88,18 @@ export default function Home() {
 
       <main className="main">
         <section className="left">
+          {/* big flashing timer panel (main site only) */}
+          <div className={`panel timer-panel ${countdown <= 10 ? 'urgent' : ''}`} role="status" aria-live="polite">
+            <div className="timer-heading">MAXIMUM TIME LEFT</div>
+            <div className="timer-big">{countdown}s</div>
+            <div className="timer-urgent" aria-hidden="true" />
+          </div>
+
           <div className="panel pool-card">
             <div className="pool-amount">${pool.toFixed(2)}</div>
             <div className="pool-meta">Current Pool</div>
             {/* house cut and last clicker removed per user request */}
           </div>
-
         </section>
 
         <div className="center">

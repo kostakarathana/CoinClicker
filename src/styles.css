@@ -30,6 +30,31 @@ body{margin:0;font-family:'Poppins', Inter, ui-sans-serif, system-ui, -apple-sys
 .pool-amount.large{font-size:96px}
 .last-clicker{color:var(--muted);font-size:14px}
 
+/* countdown timer above current pool */
+.timer-row{display:flex;align-items:center;justify-content:space-between;width:100%;margin-bottom:6px}
+.timer-label{font-size:13px;color:var(--muted);font-weight:700}
+.timer-value{font-size:20px;color:var(--accent);font-weight:900}
+
+/* big standalone timer panel */
+.timer-panel{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:36px;border-radius:22px;background:linear-gradient(180deg, rgba(246,200,76,0.06), rgba(255,255,255,0.01));border:1px solid rgba(246,200,76,0.12);box-shadow:0 30px 120px rgba(246,200,76,0.08);}
+.timer-heading{font-size:16px;color:var(--muted);font-weight:800;letter-spacing:1.2px}
+.timer-big{font-size:72px;font-weight:900;color:var(--accent);text-shadow:0 20px 60px rgba(246,200,76,0.25);font-family:'Pacifico',cursive}
+.timer-sub{font-size:13px;color:var(--muted)}
+
+/* urgent flashing state when <=10s */
+.timer-panel.urgent{animation:flashYellow 1s ease-in-out infinite}
+@keyframes flashYellow{0%{box-shadow:0 30px 120px rgba(246,200,76,0.08);transform:scale(1)}50%{box-shadow:0 30px 160px rgba(255,210,80,0.5);transform:scale(1.03)}100%{box-shadow:0 30px 120px rgba(246,200,76,0.08);transform:scale(1)}}
+
+/* make timer even more attention grabbing with pulsing background glow when urgent */
+.timer-panel.urgent::after{content:'';position:absolute;inset:0;border-radius:22px;z-index:-1;background:radial-gradient(closest-side, rgba(255,220,100,0.12), transparent 40%);filter:blur(22px);}
+
+/* small urgent bar that fades quickly in and out */
+.timer-urgent{width:60%;height:8px;border-radius:6px;background:linear-gradient(90deg,#ffd166,#ffb703);opacity:0;margin-top:8px;animation:urgentPulse 800ms linear infinite}
+@keyframes urgentPulse{0%{opacity:0}20%{opacity:1}60%{opacity:0.6}100%{opacity:0}}
+
+/* ramp up urgency animation speed when in urgent state */
+.timer-panel.urgent .timer-urgent{animation-duration:420ms}
+
 /* pool-meter experiments removed — restored original panel behavior */
 .play-panel{display:flex;align-items:center;justify-content:center}
 .coin-area{display:flex;flex-direction:column;align-items:center;gap:12px}
