@@ -1,0 +1,148 @@
+/* Import Pacifico for the logo and Poppins for UI */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap');
+
+:root{
+  --bg: #0f1724;
+  --card: #0b1220;
+  --accent: #f6c84c;
+  --muted: #94a3b8;
+  --text: #e6eef6;
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%;font-size:20px}
+.body-copy{font-size:20px;line-height:1.65}
+body{margin:0;font-family:'Poppins', Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:radial-gradient(1600px 800px at 8% 8%, rgba(246,200,76,0.03), transparent), var(--bg);color:var(--text);display:flex;align-items:center;justify-content:center;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+.subtitle{color:var(--muted);margin:0;text-align:center}
+.app{width:100%;max-width:1500px;margin:28px;padding:48px 28px 28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:18px;border:1px solid rgba(255,255,255,0.02)}
+.brand{display:flex;flex-direction:column;align-items:center}
+.header{display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:18px;padding-bottom:18px;overflow:visible}
+.logo{font-size:91px;margin:18px 0 0;background:linear-gradient(90deg,#fff,#fbe08a);-webkit-background-clip:text;background-clip:text;color:transparent;font-family:'Pacifico','Brush Script MT','Brush Script Std',cursive;line-height:1.12;text-shadow:0 12px 38px rgba(0,0,0,0.6);letter-spacing:1px}
+.tag{color:var(--muted);font-size:15px}
+.main{display:grid;grid-template-columns:360px 1fr 360px;gap:24px;align-items:center;padding:28px}
+
+/* smaller logo-like label for pool */
+.panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.004));padding:26px;border-radius:24px;box-shadow:0 22px 80px rgba(2,6,23,0.5);width:100%;border:1px solid rgba(255,255,255,0.02)}
+.pool-panel{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.panel-title{color:var(--muted);font-size:13px}
+.pool-amount{font-size:52px;color:var(--accent);font-weight:900;letter-spacing:0.6px}
+.pool-amount.large{font-size:96px}
+.last-clicker{color:var(--muted);font-size:14px}
+
+/* pool-meter experiments removed — restored original panel behavior */
+.play-panel{display:flex;align-items:center;justify-content:center}
+.coin-area{display:flex;flex-direction:column;align-items:center;gap:12px}
+.coin{font-size:110px;border-radius:999px;padding:34px;background:radial-gradient(circle at 30% 30%, #fff9e8, #f6c84c 40%, #d19a10 100%);border:none;cursor:pointer;box-shadow:0 18px 60px rgba(246,200,76,0.18), inset 0 -6px 20px rgba(0,0,0,0.12);transition:transform .12s ease, box-shadow .12s ease}
+.coin:hover{transform:translateY(-6px) rotate(-6deg);box-shadow:0 26px 80px rgba(246,200,76,0.22)}
+.coin-emoji{display:block;font-size:56px}
+.coin:active{transform:scale(0.98)}
+.hint{color:var(--muted);font-size:16px}
+.hint.big{font-size:22px}
+.wallet-panel{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.wallet-balance{font-size:30px;font-weight:800;color:#fff}
+.btn{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);padding:14px 20px;border-radius:16px;color:var(--text);cursor:pointer;font-weight:700}
+.btn.small{padding:8px 10px;font-size:14px}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(2,6,23,0.45)}
+.footer{margin-top:18px;color:var(--muted);text-align:center}
+
+.hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start}
+.left{display:flex;flex-direction:column;gap:18px}
+.center{display:flex;align-items:center;justify-content:center;min-height:60vh}
+.center .coin-stage{display:flex;flex-direction:column;align-items:center;gap:18px;height:100%;justify-content:center}
+.right{display:flex;flex-direction:column;gap:14px}
+.hero-card{padding:28px}
+.info-card{padding:20px}
+.small-panel{padding:14px}
+.feed{color:var(--muted)}
+.feed-list{list-style:none;padding:8px 6px;margin:0;display:flex;flex-direction:column;gap:8px;max-height:260px;overflow:auto}
+.feed-item{display:flex;justify-content:space-between;align-items:center;padding:14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));box-shadow:0 12px 34px rgba(2,6,23,0.55)}
+.feed-item.self{background:linear-gradient(90deg, rgba(246,200,76,0.08), rgba(255,255,255,0.01));border:1px solid rgba(246,200,76,0.1)}
+.feed-text{font-size:16px;color:var(--text);font-weight:600}
+.feed-meta{font-size:13px;color:var(--muted)}
+.feed-time{opacity:0.9}
+.meta{color:var(--muted);font-size:13px}
+
+/* subtle floating animation */
+.coin-stage .coin{animation:float 4s ease-in-out infinite}
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-20px) rotate(-2deg)}100%{transform:translateY(0)}}
+
+/* Big cookie-clicker style coin */
+.coin-btn{background:transparent;padding:0;border-radius:999px;display:inline-block}
+.coin-image{width:640px;height:640px;object-fit:contain;border-radius:50%;box-shadow:0 70px 180px rgba(246,200,76,0.38), 0 28px 84px rgba(0,0,0,0.6);transition:transform .16s cubic-bezier(.2,.9,.2,1), filter .16s ease}
+.coin-btn:hover .coin-image{transform:translateY(-10px) scale(1.02);filter:drop-shadow(0 28px 48px rgba(246,200,76,0.22))}
+.coin-btn:active .coin-image{transform:scale(0.98) translateY(0)}
+
+/* payout overlay */
+.payout-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9999;pointer-events:auto;overflow:visible;padding-top:6vh}
+.payout-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9999;pointer-events:auto}
+.payout-overlay.intense::before{content:'';position:absolute;inset:0;background:radial-gradient(1000px 600px at 10% 10%, rgba(246,200,76,0.12), transparent), linear-gradient(135deg, rgba(14,165,233,0.08), rgba(99,102,241,0.12) 40%, rgba(236,72,153,0.08));filter:blur(12px);opacity:1}
+.payout-card{position:relative;z-index:2000;padding:96px 84px 56px;border-radius:28px;text-align:center;color:var(--text);backdrop-filter:blur(6px);box-shadow:0 60px 240px rgba(0,0,0,0.85);border:1px solid rgba(255,255,255,0.06);max-width:1400px;margin:0 24px;overflow:visible}
+.payout-card.intense{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:112px 96px 64px}
+.payout-title{font-size:64px;margin:0;color:var(--accent);font-family:'Pacifico',cursive;text-shadow:0 18px 60px rgba(246,200,76,0.32), 0 0 30px rgba(255,255,255,0.08);position:relative;z-index:3001;line-height:0.95}
+.payout-title.huge{font-size:160px;letter-spacing:3px;color:#ffd166;text-shadow:0 20px 80px rgba(255,209,102,0.55), 0 0 90px rgba(255,107,107,0.22);line-height:0.95}
+.payout-amount{font-size:56px;font-weight:900;margin-top:12px;position:relative;z-index:3001}
+.payout-amount.huge-amt{font-size:120px;color:#ffffff;text-shadow:0 12px 44px rgba(0,0,0,0.7), 0 0 50px rgba(255,255,255,0.08)}
+.payout-coins{position:absolute;inset:0;pointer-events:none;overflow:visible;z-index:1000}
+.payout-coin{position:absolute;width:84px;height:84px;opacity:0;transform:translate(-50%,-50%) scale(0.6);animation-name:flyUp;animation-timing-function:cubic-bezier(.2,.9,.2,1);animation-fill-mode:forwards}
+.payout-coin.intense-coin{width:96px;height:96px}
+.payout-coin{filter:drop-shadow(0 22px 46px rgba(0,0,0,0.7))}
+@keyframes flyUp{0%{opacity:0;transform:translate(-50%,-50%) scale(0.2)}8%{opacity:1;transform:translate(-50%,-60%) scale(1.05)}30%{transform:translate(-50%,-140%) scale(1)}100%{opacity:1;transform:translate(-50%,-420%) rotate(720deg) scale(0.9)}}
+
+/* confetti pieces */
+.payout-confetti{position:absolute;width:12px;height:18px;border-radius:2px;opacity:0;transform:translate(-50%,-50%) rotate(0deg);animation-name:confettiDrop;animation-timing-function:linear;animation-fill-mode:forwards}
+@keyframes confettiDrop{0%{opacity:1;transform:translate(-50%,-50%) rotate(0deg) scale(1)}50%{transform:translate(-50%,-200%) rotate(180deg) scale(1)}100%{opacity:1;transform:translate(-50%,-520%) rotate(720deg) scale(0.9)}}
+
+/* big burst glow */
+.payout-overlay.intense .payout-card.intense::after{content:'';position:absolute;inset:-60px;border-radius:28px;z-index:-1;background:radial-gradient(closest-side, rgba(255,228,171,0.12), transparent 40%), conic-gradient(from 180deg at 50% 50%, rgba(255,99,132,0.07), rgba(99,102,241,0.08), rgba(6,214,160,0.06));filter:blur(30px);}
+
+/* coin rain (subtle, full-screen, non-interactive) */
+.coin-rain{position:fixed;inset:0;pointer-events:none;z-index:9000;overflow:hidden}
+.coin-rain-item{position:absolute;top:-8%;transform:translate(-50%,0);opacity:0.2;filter:drop-shadow(0 6px 10px rgba(0,0,0,0.35));animation-name:coinFall;animation-timing-function:linear;animation-fill-mode:forwards}
+@keyframes coinFall{0%{transform:translate(-50%, -8%) rotate(0deg);opacity:0.0}10%{opacity:0.18}60%{transform:translate(-50%,60%) rotate(180deg)}100%{transform:translate(-50%,120vh) rotate(720deg);opacity:0.18}}
+
+/* ensure the rain is behind the intense overlay but above the main UI when active */
+.payout-overlay + .coin-rain{z-index:9990}
+
+/* info button + modal */
+.info-btn{position:fixed;right:18px;top:18px;z-index:10001;padding:14px 16px;border-radius:14px;background:rgba(0,0,0,0.95);border:1px solid rgba(255,255,255,0.06);cursor:pointer;color:#ffffff;font-weight:800;font-size:18px;box-shadow:0 18px 36px rgba(0,0,0,0.75)}
+.info-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:10002;background:rgba(0,0,0,0.86)}
+.info-panel{background:linear-gradient(180deg, rgba(10,10,10,0.96), rgba(18,18,18,0.96));padding:32px;border-radius:16px;max-width:760px;color:var(--text);position:relative;border:1px solid rgba(255,255,255,0.04)}
+.info-title{font-size:22px;margin:0 0 12px}
+.info-body{color:var(--muted);font-size:15px}
+.info-close{position:absolute;right:12px;top:12px;border:none;background:transparent;color:var(--muted);font-size:18px;cursor:pointer}
+
+/* particle burst */
+.coin-wrapper{display:inline-block}
+.particle{position:absolute;left:50%;top:50%;width:64px;height:64px;border-radius:50%;transform:translate(-50%,-50%) scale(0.2);opacity:0;pointer-events:none;transition:transform 900ms cubic-bezier(.16,.9,.33,1),opacity 900ms ease, filter 900ms ease;will-change:transform,opacity}
+.particle.launched{transform:translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--rot)) scale(1);opacity:1}
+.particle.fading{opacity:0;transform:translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--rot)) scale(0.6);filter:blur(1px)}
+.particle{filter:drop-shadow(0 12px 28px rgba(0,0,0,0.5));}
+
+@media (max-width: 1200px){
+  .coin-image{width:420px;height:420px}
+}
+
+@media (max-width: 900px){
+  .coin-image{width:320px;height:320px}
+}
+
+@media (max-width: 480px){
+  .coin-image{width:220px;height:220px}
+}
+
+@media (max-width: 1100px){
+  .app{max-width:980px}
+  .main{grid-template-columns:1fr 360px}
+  .coin{font-size:88px}
+  .logo{font-size:56px}
+}
+
+@media (max-width: 780px){
+  .main{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr}
+  .coin{font-size:78px}
+  .pool-amount.large{font-size:44px}
+  .logo{font-size:40px}
+}
