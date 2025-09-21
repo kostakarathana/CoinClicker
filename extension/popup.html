@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CoinClicker Mini</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <!-- use the same Pacifico text-logo as the main app for visual parity -->
+        <div class="logo">CoinClicker</div>
+        <div class="brand-text">
+          <div class="subtitle">Mini demo</div>
+        </div>
+      </div>
+      <div class="status">Demo</div>
+    </header>
+
+    <main class="content">
+      <div class="panel">
+        <div class="counter-row">
+          <div id="counter">Clicks</div>
+          <div id="count" class="big-count">0</div>
+        </div>
+
+        <!-- main coin (replaces button) - uses project's coin image when available -->
+        <div id="coin" class="main-coin coin-btn" role="button" tabindex="0" aria-label="Click coin">
+          <img src="assets/coin.png" alt="coin" class="coin-image" id="coinImg" onerror="this.style.display='none'">
+          <!-- fallback face (emoji/text) shown when image not present -->
+          <div class="coin-face">
+            <div class="coin-inner">¢</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="balance">Credits: <span id="credits">$0.00</span></div>
+          <div class="small-muted">Every 50th click = demo payout</div>
+        </div>
+      </div>
+
+      <div class="history-panel">
+        <h4>Recent activity</h4>
+        <ul id="events"></ul>
+      </div>
+    </main>
+
+    <footer class="footer">Long-press logo to clear state • Frontend demo only</footer>
+  </div>
+
+  <!-- overlay + coin container -->
+  <div id="overlay" class="hidden" aria-hidden="true">
+    <div class="overlay-backdrop"></div>
+    <div class="overlay-card">
+      <img src="icons/icon-128.png" class="overlay-logo" alt="logo">
+      <h2>Winner!</h2>
+      <p class="overlay-text">You won the demo jackpot: <strong id="jackpotAmount">$5.00</strong></p>
+      <button id="closeOverlay" class="close-btn">Nice!</button>
+    </div>
+    <div id="particleLayer" class="particle-layer" aria-hidden="true"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
