@@ -6,6 +6,8 @@ This file will capture detailed frontend decisions before implementation. Please
 - Platform: React web (Vite + React)
 - Keep the UI simple and mobile-responsive (we will primarily target web browsers but ensure good mobile layout).
 - Payments & storage: in-app credits (simulated for hackathon) with click events recorded on Flare where feasible; payouts via XRPL (later).
+  
+    Why Flare: Flare is EVM‑compatible with low transaction costs and solid tooling (Hardhat, Chainlink VRF support), making it a practical chain for on‑contract game logic and provable randomness. Why XRPL: XRPL offers fast, low‑cost payments and an independent ledger for settlement and memo proofs — ideal for final payouts and an externally verifiable proof record for judges.
 - Must follow hackathon rules: use Flare + XRPL only for blockchain interactions.
 
 ---
